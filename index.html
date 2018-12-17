@@ -382,6 +382,8 @@ Error message and password prompt
 
 <li>Spring Boot 参数校验.md</li>
 
+<li>vps startup</li>
+
 </ul>
 </p>
 
@@ -13756,7 +13758,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="[[Nginx 开启 gzip]] [[我的 .vimrc]] 历史输入命令频率 $:/config/Search/MinLength [[Linux Shell 中的特殊符号]] About" title="$:/StoryList">
+<div list="[[vps startup]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -14759,8 +14761,7 @@ history | awk '{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&quot; &q
 ```</pre>
 </div>
 <div created="20180105015415515" modified="20181217140730625" tags="Vim Linux" title="我的 .vimrc">
-<pre>
-```
+<pre>```
 set nocp
 
 set nobackup                 &quot;取消备份
@@ -15215,6 +15216,43 @@ public ResponseEntity index(@Validated @RequestBody User user) {
 | @Range(min=, max=, message=) | 被注释的元素必须在合适的范围内                           |
 
 参考文档：&lt;http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/&gt;</pre>
+</div>
+<div created="20181217143009832" modified="20181217143204436" tags="VPS" title="vps startup" type="text/x-markdown">
+<pre>```bash
+rm /Users/{name}/.ssh/known_hosts
+
+locale-gen zh_CN.UTF-8
+
+dpkg-reconfigure locales
+
+vim /etc/default/locale
+LC_ALL=zh_CN.UTF-8
+LANG=zh_CN.UTF-8
+
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh
+
+
+wget https://github.com/tcp-nanqinlang/lkl-rinetd/releases/download/1.1.0-nocheckvirt/tcp_nanqinlang-rinetd-debianorubuntu-nocheckvirt.sh
+
+bash tcp_nanqinlang-rinetd-debianorubuntu-nocheckvirt.sh
+
+apt install curl
+
+#iptables
+iptables -t nat -nL
+
+vim /etc/ssh/sshd_config
+Port 2222
+ /etc/init.d/ssh restart
+
+
+cat ~/.ssh/id_rsa.pub | ssh -p 2222  root@remote &quot;umask 077; mkdir -p .ssh; cat&gt;&gt;.ssh/authorized_keys&quot;
+
+
+
+
+
+```</pre>
 </div>
 
 </div>
