@@ -1,0 +1,13 @@
+{
+  "name": "wiki",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:fraillove/wiki.git",
+  "author": "fraillove <skeweddestiny@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "load": "sh cmd/load.sh",
+    "unload": "sh cmd/unload.sh"
+  }
+}
