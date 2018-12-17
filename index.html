@@ -360,29 +360,55 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla/options/sidebarlayout</li>
 
+<li>查看 Linux 版本</li>
+
+<li>复制本地文件到服务器</li>
+
 <li>复制公钥到远程服务器</li>
+
+<li>根据关键字杀进程</li>
 
 <li>回调地狱.md</li>
 
 <li>历史输入命令频率</li>
 
+<li>删除大量文件的文件夹</li>
+
+<li>网络端口占用情况</li>
+
 <li>我的 .vimrc</li>
+
+<li>已安装 IDEA 插件</li>
 
 <li>About</li>
 
 <li>fraillove</li>
 
+<li>Golang 交叉编译</li>
+
 <li>IntelliJ IDEA Keys.md</li>
+
+<li>Linux 开启服务器 ping 和关闭</li>
 
 <li>Linux Shell 中的特殊符号</li>
 
 <li>mac 安装 oracle.md</li>
 
+<li>macOS 快捷键</li>
+
 <li>Nginx 开启 gzip</li>
+
+<li>PyCharm 快捷键</li>
 
 <li>Spring Boot 参数校验.md</li>
 
+<li>SSH 设置</li>
+
+<li>tar压缩文件的时候排除特定文件和文件夹</li>
+
 <li>vps startup</li>
+
+<li>VS Code 快捷键</li>
 
 </ul>
 </p>
@@ -13758,7 +13784,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="[[vps startup]] About" title="$:/StoryList">
+<div list="[[macOS 快捷键]] [[VS Code 快捷键]] [[PyCharm 快捷键]] [[Golang 交叉编译]] [[查看 Linux 版本]] [[Linux 开启服务器 ping 和关闭]] [[SSH 设置]] 网络端口占用情况 根据关键字杀进程 复制本地文件到服务器 删除大量文件的文件夹 tar压缩文件的时候排除特定文件和文件夹 [[已安装 IDEA 插件]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -13865,27 +13891,27 @@ $title$$(currentTiddler)$
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;http://127.0.0.1:8000/index.html&quot;
+            &quot;text&quot;: &quot;https://fraillove.github.io/wiki/&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;127.0.0.1:8000&quot;
+            &quot;text&quot;: &quot;fraillove.github.io&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;127.0.0.1&quot;
+            &quot;text&quot;: &quot;fraillove.github.io&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;http:&quot;
+            &quot;text&quot;: &quot;https:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
-            &quot;text&quot;: &quot;8000&quot;
+            &quot;text&quot;: &quot;&quot;
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/index.html&quot;
+            &quot;text&quot;: &quot;/wiki/&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -13893,7 +13919,7 @@ $title$$(currentTiddler)$
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;http://127.0.0.1:8000&quot;
+            &quot;text&quot;: &quot;https://fraillove.github.io&quot;
         }
     }
 }</pre>
@@ -14475,6 +14501,35 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20171120075750403" modified="20171120075750403" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout">
 <pre>fluid-fixed</pre>
 </div>
+<div created="20181217144852997" modified="20181217144928838" tags="Linux" title="查看 Linux 版本" type="text/x-markdown">
+<pre>##### 一、查看`Linux`内核版本命令（两种方法）：
+
+```
+1、cat /proc/version
+
+2、uname -a
+```
+
+##### 二、查看`Linux`系统版本的命令（3种方法）：
+
+```
+1、lsb_release -a
+即可列出所有版本信息：
+这个命令适用于所有的Linux发行版，包括Redhat、SuSE、Debian…等发行版。
+
+2、cat /etc/redhat-release
+这种方法只适合Redhat系的Linux：
+
+3、cat /etc/issue
+此命令也适用于所有的Linux发行版。
+```</pre>
+</div>
+<div created="20181217143916444" modified="20181217144837368" tags="Linux" title="复制本地文件到服务器" type="text/x-markdown">
+<pre>```bash
+scp  -P {port} {localfile} remoteuser@remote:{directory}
+```
+上传目录加 -r</pre>
+</div>
 <div created="20171214061706416" modified="20181217061300578" tags="SSH Linux" title="复制公钥到远程服务器" type="text/x-markdown">
 <pre>```bash
 ssh-copy-id -i /root/.ssh/id_rsa.pub -p 22 root@remotehost
@@ -14487,6 +14542,11 @@ cat ~/.ssh/id_rsa.pub | ssh -p remoteport  root@remotehost &quot;umask 077; mkdi
 
 login 
 `ssh -p 2222 root@remotehost`</pre>
+</div>
+<div created="20181217144045827" modified="20181217144103492" tags="Linux" title="根据关键字杀进程" type="text/x-markdown">
+<pre>```bash
+ps -ef | grep &quot;进程关键字&quot; | grep -v grep | awk '{print $2}' | xargs kill -30
+```</pre>
 </div>
 <div created="20181217063145961" modified="20181217063242198" tags="article JavaScript" title="回调地狱.md" type="text/x-markdown">
 <pre># [Callback Hell](http://callbackhell.com/)
@@ -14760,6 +14820,40 @@ You can find the source for this [on github](http://github.com/maxogden/callback
 history | awk '{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&quot; &quot; CMD[ a ]/count*100 &quot;% &quot; a }' | grep -v &quot;./&quot; | column -c3 -s &quot; &quot; -t |sort -nr | nl |awk '{if($2&gt;=5) print$0}'
 ```</pre>
 </div>
+<div created="20181217143845045" modified="20181217143900086" tags="Linux" title="删除大量文件的文件夹" type="text/x-markdown">
+<pre>```bash
+ rsync -a --delete blanktest/   test/    
+```</pre>
+</div>
+<div created="20181217144126946" modified="20181217144313842" tags="macOS Linux" title="网络端口占用情况" type="text/x-markdown">
+<pre># netstat命令
+```zsh
+netstat -an | grep 3306
+```
+3306替换成需要grep的端口号
+
+
+
+
+# lsof命令
+
+通过list open file命令可以查看到当前打开文件，在linux中所有事物都是以文件形式存在，包括网络连接及硬件设备。
+
+```Zsh
+lsof -i:80
+```
+ -i 参数表示网络链接，:80指明端口号，该命令会同时列出PID，方便kill
+
+
+
+# 查看所有进程监听的端口
+
+```Zsh
+sudo lsof -i -P | grep -i &quot;listen&quot;
+```
+
+</pre>
+</div>
 <div created="20180105015415515" modified="20181217140730625" tags="Vim Linux" title="我的 .vimrc">
 <pre>```
 set nocp
@@ -14812,6 +14906,11 @@ set showmode                 &quot; 左下角显示当前 vim 模式
 set nofoldenable             &quot; 启动 vim 时关闭折叠代码
 ```</pre>
 </div>
+<div created="20181217143615558" modified="20181217143756249" tags="[[IntelliJ IDEA]]" title="已安装 IDEA 插件" type="text/x-markdown">
+<pre>```bash
+ ll -hF1 /Users/{name}/Library/Application\ Support/IntelliJIdea2018.2|grep -v xml
+```</pre>
+</div>
 <div created="20171120080307670" modified="20181217055438222" tags="" title="About" type="text/vnd.tiddlywiki">
 <pre>&lt;&lt;&lt;.tc-big-quote
 Welcome to my wiki.
@@ -14823,6 +14922,57 @@ Welcome to my wiki.
 </div>
 <div created="20171120082431652" modified="20181217062028423" title="fraillove">
 <pre>Github: https://github.com/fraillove</pre>
+</div>
+<div created="20181217145008960" modified="20181217145208299" tags="Go" title="Golang 交叉编译" type="text/x-markdown">
+<pre>
+** 有效的`$GOOS`和`$GOARCH`组合如下：
+**
+
+    $GOOS		$GOARCH
+    android     arm
+    darwin      386
+    darwin      amd64
+    darwin      arm
+    darwin      arm64
+    dragonfly   amd64
+    freebsd     386
+    freebsd     amd64
+    freebsd     arm
+    linux       386
+    linux       amd64
+    linux       arm
+    linux       arm64
+    linux       ppc64
+    linux       ppc64le
+    linux       mips
+    linux       mipsle
+    linux       mips64
+    linux       mips64le
+    netbsd      386
+    netbsd      amd64
+    netbsd      arm
+    openbsd     386
+    openbsd     amd64
+    openbsd     arm
+    plan9       386
+    plan9       amd64
+    solaris     amd64
+    windows     386
+    windows     amd64
+
+```
+env GOOS=linux GOARCH=arm go build -v github.com/fraillove/gopro/cmd/gopro
+```
+或者进入项目根目录
+
+```
+env GOOS=linux GOARCH=arm go build .
+```
+
+-o 指定编译的文件名
+```
+env GOOS=linux GOARCH=arm go build -o test.bin .
+```</pre>
 </div>
 <div created="20181217062426750" modified="20181217062538634" tags="[[cheet sheet]] [[IntelliJ IDEA]]" title="IntelliJ IDEA Keys.md" type="text/x-markdown">
 <pre># IntelliJ IDEA For Mac 快捷键
@@ -14999,6 +15149,36 @@ Welcome to my wiki.
 #### 十一、Other（一些官方文档上没有体现的快捷键）
 - `Command + Shift +8` 竖编辑模式</pre>
 </div>
+<div created="20181217144529595" modified="20181217144646681" tags="Linux" title="Linux 开启服务器 ping 和关闭" type="text/x-markdown">
+<pre>临时修改
+
+```bash
+echo 1 &gt;/proc/sys/net/ipv4/icmp_echo_ignore_all
+```
+
+- 1 表示禁ping
+- 0 表示开启ping
+
+或者：
+```bash
+sysctl -w net.ipv4.icmp_echo_ignore_all=1
+```
+- 1 表示禁ping
+- 0 表示开启ping
+
+**永久生效**
+
+修改配置文件 `/etc/sysctl.conf`
+
+```bash
+vim /etc/sysctl.conf
+net.ipv4.icmp_echo_ignore_all=1
+```
+
+保存退出，`sysctl -p`
+
+</pre>
+</div>
 <div created="20171122081720794" modified="20181217141452074" tags="Shell Linux" title="Linux Shell 中的特殊符号" type="text/vnd.tiddlywiki">
 <pre>&amp;   表示任务在后台执行，如要在后台运行redis-server,则有  redis-server &amp;
 
@@ -15120,6 +15300,15 @@ docker stop oracle
 docker run -p 5432:5432 -e POSTGRES_DB=baur postgres:latest
 ```</pre>
 </div>
+<div created="20181217145737662" modified="20181217150157810" tags="macOS" title="macOS 快捷键" type="text/x-markdown">
+<pre>#### 文本编辑快捷键
+![IMG_2457.JPG](https://i.loli.net/2018/12/17/5c17b9979806a.jpg)
+
+#### Mac 键盘快捷键
+![IMG_2458.jpg](https://i.loli.net/2018/12/17/5c17ba56b80db.jpg)
+
+</pre>
+</div>
 <div created="20180227085448464" modified="20181217141419547" tags="gzip Nginx" title="Nginx 开启 gzip" type="text/x-markdown">
 <pre>```bash
 # 开启gzip
@@ -15140,6 +15329,220 @@ gzip_vary on;
 # 禁用IE 6 gzip
 gzip_disable &quot;MSIE [1-6]\.&quot;;
 ```</pre>
+</div>
+<div created="20181217145316725" modified="20181217145643374" tags="IDE Python PyCharm" title="PyCharm 快捷键" type="text/plain">
+<pre>
+Editing（编辑）
+⌃Space 基本的代码补全（补全任何类、方法、变量）
+⌃⇧Space 智能代码补全（过滤器方法列表和变量的预期类型）
+⌘⇧↩ 自动结束代码，行末自动添加分号
+⌘P 显示方法的参数信息
+⌃J, Mid. button click 快速查看文档
+⇧F1 查看外部文档（在某些代码上会触发打开浏览器显示相关文档）
+⌘+鼠标放在代码上 显示代码简要信息
+⌘F1 在错误或警告处显示具体描述信息
+⌘N, ⌃↩, ⌃N 生成代码（getter、setter、构造函数、hashCode/equals,toString）
+⌃O 覆盖方法（重写父类方法）
+⌃I 实现方法（实现接口中的方法）
+⌘⌥T 包围代码（使用if..else, try..catch, for, synchronized等包围选中的代码）
+⌘/ 注释/取消注释与行注释
+⌘⌥/ 注释/取消注释与块注释
+⌥↑ 连续选中代码块
+⌥↓ 减少当前选中的代码块
+⌃⇧Q 显示上下文信息
+⌥↩ 显示意向动作和快速修复代码
+⌘⌥L 格式化代码
+⌃⌥O 优化import
+⌃⌥I 自动缩进线
+⇥ / ⇧⇥ 缩进代码 / 反缩进代码
+⌘X 剪切当前行或选定的块到剪贴板
+⌘C 复制当前行或选定的块到剪贴板
+⌘V 从剪贴板粘贴
+⌘⇧V 从最近的缓冲区粘贴
+⌘D 复制当前行或选定的块
+⌘⌫ 删除当前行或选定的块的行
+⌃⇧J 智能的将代码拼接成一行
+⌘↩ 智能的拆分拼接的行
+⇧↩ 开始新的一行
+⌘⇧U 大小写切换
+⌘⇧] / ⌘⇧[ 选择直到代码块结束/开始
+⌥⌦ 删除到单词的末尾（⌦键为Fn+Delete）
+⌥⌫ 删除到单词的开头
+⌘+ / ⌘- 展开 / 折叠代码块
+⌘⇧+ 展开所以代码块
+⌘⇧- 折叠所有代码块
+⌘W 关闭活动的编辑器选项卡
+
+
+Usage Search（使用查询）
+⌥F7 / ⌘F7 在文件中查找用法 / 在类中查找用法
+⌘⇧F7 在文件中突出显示的用法
+⌘⌥F7 显示用法
+
+
+Compile and Run（编译和运行）
+⌘F9 编译Project
+⌘⇧F9 编译选择的文件、包或模块
+⌃⌥R 弹出 Run 的可选择菜单
+⌃⌥D 弹出 Debug 的可选择菜单
+⌃R 运行
+⌃D 调试
+⌃⇧R, ⌃⇧D 从编辑器运行上下文环境配置
+
+
+Debugging（调试）
+F8 进入下一步，如果当前行断点是一个方法，则不进入当前方法体内
+F7 进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中
+⇧F7 智能步入，断点所在行上有多个方法调用，会弹出进入哪个方法
+⇧F8 跳出
+⌥F9 运行到光标处，如果光标前有其他断点会进入到该断点
+⌥F8 计算表达式（可以更改变量值使其生效）
+⌘⌥R 恢复程序运行，如果该断点下面代码还有断点则停在下一个断点上
+⌘F8 切换断点（若光标当前行有断点则取消断点，没有则加上断点）
+⌘⇧F8 查看断点信息
+
+
+Navigation（导航）
+⌘O 查找类文件
+⌘⇧O 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠/
+⌘⌥O 前往指定的变量 / 方法
+⌃← / ⌃→ 左右切换打开的编辑tab页
+F12 返回到前一个工具窗口
+⎋ 从工具窗口进入代码文件窗口
+⇧⎋ 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口
+⌘⇧F4 关闭活动run/messages/find/… tab
+⌘L 在当前文件跳转到某一行的指定处
+⌘E 显示最近打开的文件记录列表
+⌘⌥← / ⌘⌥→ 退回 / 前进到上一个操作的地方
+⌘⇧⌫ 跳转到最后一个编辑的地方
+⌥F1 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder)
+⌘B / ⌘ 鼠标点击 进入光标所在的方法/变量的接口或是定义处
+⌘⌥B 跳转到实现处，在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口
+⌥ Space, ⌘Y 快速打开光标所在方法、类的定义
+⌃⇧B 跳转到类型声明处
+⌘U 前往当前光标所在方法的父类的方法 / 接口定义
+⌃↓ / ⌃↑ 当前光标跳转到当前文件的前一个/后一个方法名位置
+⌘] / ⌘[ 移动光标到当前所在代码的花括号开始/结束位置
+⌘F12 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法）
+⌃H 显示当前类的层次结构
+⌘⇧H 显示方法层次结构
+⌃⌥H 显示调用层次结构
+F2 / ⇧F2 跳转到下一个/上一个突出错误或警告的位置
+F4 / ⌘↓ 编辑/查看代码源
+⌥ Home 显示到当前文件的导航条
+F3选中文件/文件夹/代码行，添加/取消书签
+⌥F3 选中文件/文件夹/代码行，使用助记符添加/取消书签
+⌃0...⌃9 定位到对应数值的书签位置
+⌘F3 显示所有书签
+
+
+Refactoring（重构）
+F5 复制文件到指定目录
+F6 移动文件到指定目录
+⌘⌫ 在文件上为安全删除文件，弹出确认框
+⇧F6 重命名文件
+⌘F6 更改签名
+⌘⌥N 一致性
+⌘⌥M 将选中的代码提取为方法
+⌘⌥V 提取变量
+⌘⌥F 提取字段
+⌘⌥C 提取常量
+⌘⌥P 提取参数
+VCS/Local History（版本控制/本地历史记录）
+⌘K 提交代码到版本控制器
+⌘T 从版本控制器更新代码
+⌥⇧C 查看最近的变更记录
+⌃C 快速弹出版本控制器操作面板
+Live Templates（动态代码模板）
+⌘⌥J 弹出模板选择窗口，将选定的代码使用动态模板包住
+⌘J 插入自定义动态代码模板
+General（通用）
+⌘1...⌘9 打开相应编号的工具窗口
+⌘S 保存所有
+⌘⌥Y 同步、刷新
+⌃⌘F 切换全屏模式
+⌘⇧F12 切换最大化编辑器
+⌥⇧F 添加到收藏夹
+⌥⇧I 检查当前文件与当前的配置文件
+`§⌃, ⌃“ 快速切换当前的scheme（切换主题、代码样式等）
+⌘, 打开IDEA系统设置
+⌘; 打开项目结构对话框
+⇧⌘A 查找动作（可设置相关选项）
+⌃⇥ 编辑窗口标签和工具窗口之间切换（如果在切换的过程加按上delete，则是关闭对应选中的窗口）
+Other（一些官方文档上没有体现的快捷键）
+⌘⇧8 竖编辑模式
+
+
+导航
+⌘O 查找类文件 Ctrl + N
+⌘⌥O 前往指定的变量 / 方法 Ctrl + Shift + Alt + N
+⌃← / ⌃→ 左右切换打开的编辑tab页Alt←/Alt→
+⎋ 从工具窗口进入代码文件窗口 ESC
+⌘L 在当前文件跳转到某一行的指定处 Ctrl + G
+⌘E 显示最近打开的文件记录列表 Ctrl + E
+⌘⌥←/ ⌘⌥→退回 / 前进到上一个操作的地方 Ctrl + Alt + ←/Ctrl + Alt + →
+⌘⇧⌫ 跳转到最后一个编辑的地方
+⌃H 显示当前类的层次结构Ctrl + H
+⌘⇧H 显示方法层次结构
+⌃⌥H 显示调用层次结构
+F4 /⌘↓ 编辑/查看代码源
+⌘⌥U 显示类UML图
+⌃J 查看注释
+
+
+编辑
+⌥⌦ 删除到单词的末尾（⌦键为Fn+Delete）
+⌥⌫ 删除到单词的开头
+⌘+ /⌘- 展开 / 折叠代码块
+⌘F1 在错误或警告处显示具体描述信息
+⌘⌥L 格式化代码
+⌃⌥O 优化import
+⇧↩ 开始新的一行
+⌘⇧↩ 自动结束代码，行末自动添加分号
+⌃I 实现方法（实现接口中的方法）
+⇧F6 重命名文件或者变量
+⌘N,⌃↩,⌃N 生成代码（getter、setter、构造函数、hashCode/equals,toString）
+⌘P 显示方法的参数信息
+
+
+Search/Replace（查询/替换）
+Double⇧ 查找任何东西
+⌘⇧F 全局查找（根据路径）
+⌘F 文件内查找
+⌘G 查找模式下，向下查找
+⌘⇧G 查找模式下，向上查找
+⌘R 文件内替换
+⌘⇧F 全局查找（根据路径）
+⌘⇧R 全局替换（根据路径）
+⌘⇧S 查询结构（Ultimate Edition 版专用，需要在Keymap中设置）
+⌘⇧M 替换结构（Ultimate Edition 版专用，需要在Keymap中设置）
+
+
+导航
+⌘⌥B 跳转到接口的实现
+⌘U 查看接口定义
+⌘⌥← /⌘⌥→ 退回 / 前进到上一个操作的地方
+⌘B /⌘ 鼠标点击 进入光标所在的方法/变量的接口或是定义处
+⌃⇧B 跳转到类型声明处
+⌥ Space,⌘Y 快速打开光标所在方法、类的定义
+⌘O 查找类文件
+⌘⇧O 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠/
+F12 返回到前一个工具窗口
+⎋ 从工具窗口进入代码文件窗口
+⇧⎋ 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口
+F3选中文件/文件夹/代码行，添加/取消书签
+⌥F3 选中文件/文件夹/代码行，使用助记符添加/取消书签
+⌃0…⌃9 定位到对应数值的书签位置
+⌘F3 显示所有书签
+⌥F1 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder)
+⌘F12 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法）
+
+通用
+⌃⌘F 切换全屏模式
+自动代码
+⚠注：⌘+J可以调出所有提供的代码补全↩
+
+</pre>
 </div>
 <div created="20181217062217698" modified="20181217062247257" tags="Java [[Spring Boot]]" title="Spring Boot 参数校验.md" type="text/x-markdown">
 <pre>在后端开发的过程中，验证前端参数的合法性是一个必不可少的步骤。但是参数验证会产生大量的样板代码，导致代码可读性差。使用 `validator-api` 可以简洁优雅的验证参数。
@@ -15217,6 +15620,123 @@ public ResponseEntity index(@Validated @RequestBody User user) {
 
 参考文档：&lt;http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/&gt;</pre>
 </div>
+<div created="20181217144415769" modified="20181217144514100" tags="SSH Linux" title="SSH 设置" type="text/x-markdown">
+<pre>## 查询登陆历史
+
+```bash
+sudo lastb|awk '{print $1}' |sort |uniq -c |sort -n -k 1 |tail
+```
+
+## 确定 sshd_config 的权限
+
+确定 `sshd_config` 只有root才能读写，其他用户不能进行任何操作
+
+```
+sudo chown root:root /etc/ssh/sshd_config
+sudo chmod og-rwx /etc/ssh/sshd_config
+```
+
+## 修改ssh服务端口
+
+这一步的效果很显著，只从改了ssh服务端口后，就在没有看到任何登陆失败的提示了
+
+```
+Port XXXX
+```
+
+## 只启用SSH Protocol 2
+
+Protocol 1的安全性相对要差一些
+
+```
+Protocol 2
+```
+
+## 不允许空密码登陆
+
+```
+PermitEmptyPasswords no
+```
+
+## 不允许root登陆
+
+从上面对 `lastb` 的结果分析可以得知， `root` 是被实验最多的用户，没有之一。
+
+因此禁用 root 登陆很有必要:
+
+```
+PermitRootLogin no
+```
+
+若你觉得一股脑儿完全禁用root登陆太过了，而希望只在特定的主机上允许root登陆，则可以禁止 root 用密码登陆
+
+```
+PermitRootLogin prohibit-password
+```
+
+然后在特定主机上建立公私密钥认证关系即可。
+
+## 限制只能登陆特定用户
+
+我们可以使用 `DenyUsers`, `AllowUsers`, `DenyGroups` 和 `AllowGroups` 关键字来限定允许登陆的用户。
+
+当某个用户登陆时，该用户依次经过 `DenyUsers`, `AllowUsers`, `DenyGroups` 和 `AllowGroups` 的测试，只有在所有测试都通过的情况下才允许登陆。
+
+```
+AllowUsers ramesh john jason
+AllowGroups sysadmin dba
+DenyUsers cvs apache jane
+DenyGroups developers qa
+```
+
+## 修改未登陆的超时时间
+
+用户未登陆成功的情况下，默认120秒后会登出。这个时间可以缩短，比如60.
+
+```
+LoginGraceTime 1m
+```
+
+但要注意，若该值缩减为 `0` 则表示没有时间限制
+
+## 设置会话空闲一段时间后自动退出
+
+设置空间一段时间自动退出有两种方法，
+
+一种是设置 `TMOUT` 环境变量，比如在 `~/.bash_profile` 中加上
+
+```
+export TMOUT=100
+```
+
+还有一种方法是设置 `sshd_config`
+
+```bash
+ClientAliveInterval 100
+ClientAliveCountMax 0
+```
+
+
+
+
+
+
+
+```bash
+/etc/init.d/ssh restart
+```
+
+
+
+
+
+</pre>
+</div>
+<div created="20181217143709073" modified="20181217143740317" tags="Linux" title="tar压缩文件的时候排除特定文件和文件夹" type="text/x-markdown">
+<pre>```bash
+tar --exclude='./folder' --exclude='./upload/folder2' -zcvf /backup/filename.tgz 
+```</pre>
+</div>
 <div created="20181217143009832" modified="20181217143204436" tags="VPS" title="vps startup" type="text/x-markdown">
 <pre>```bash
 rm /Users/{name}/.ssh/known_hosts
@@ -15253,6 +15773,32 @@ cat ~/.ssh/id_rsa.pub | ssh -p 2222  root@remote &quot;umask 077; mkdir -p .ssh;
 
 
 ```</pre>
+</div>
+<div created="20181217145600551" modified="20181217145709170" tags="IDE [[VS Code]]" title="VS Code 快捷键" type="text/x-markdown">
+<pre>`⌘/`        (多行)单行注释
+
+`⌥⇧a`     (取消)多行注释
+
+
+
+`⌘b`        (隐藏)显示目录栏
+
+`⇧⌥ ↑/↓`   复制当前行
+
+`⇧⌘k`         删除当前行
+
+
+
+`⌃~`        (隐藏)显示终端
+
+
+
+`⇧⌥f`    格式化代码
+
+`⌘[`       行减少缩进         `⌘]`       行增加缩进   
+
+`⌘1/2/3`     拆分编辑器
+</pre>
 </div>
 
 </div>
