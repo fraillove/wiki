@@ -136,6 +136,8 @@ Error message and password prompt
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/permaview</li>
 
+<li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/refresh</li>
+
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/tag-manager</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/timestamp</li>
@@ -443,6 +445,9 @@ Error message and password prompt
 </div>
 <div created="20171120085420597" modified="20171129022348096" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/permaview">
 <pre>hide</pre>
+</div>
+<div created="20181217150628042" modified="20181217150628042" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/refresh">
+<pre>show</pre>
 </div>
 <div created="20171122085020372" modified="20181217073850788" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/tag-manager">
 <pre>hide</pre>
@@ -13778,13 +13783,13 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20171120075730689" modified="20181217073739495" title="$:/state/tab/moresidebar-401116514">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20171120075104116" modified="20181217141128107" title="$:/state/tab/sidebar--1835078512">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20171120075104116" modified="20181217150618258" title="$:/state/tab/sidebar--1835078512">
+<pre>$:/core/ui/SideBar/Tools</pre>
 </div>
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="[[macOS 快捷键]] [[VS Code 快捷键]] [[PyCharm 快捷键]] [[Golang 交叉编译]] [[查看 Linux 版本]] [[Linux 开启服务器 ping 和关闭]] [[SSH 设置]] 网络端口占用情况 根据关键字杀进程 复制本地文件到服务器 删除大量文件的文件夹 tar压缩文件的时候排除特定文件和文件夹 [[已安装 IDEA 插件]] About" title="$:/StoryList">
+<div list="[[SSH 设置]] [[macOS 快捷键]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -13891,27 +13896,27 @@ $title$$(currentTiddler)$
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;https://fraillove.github.io/wiki/&quot;
+            &quot;text&quot;: &quot;http://127.0.0.1:8000/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
-            &quot;text&quot;: &quot;fraillove.github.io&quot;
+            &quot;text&quot;: &quot;127.0.0.1:8000&quot;
         },
         &quot;$:/info/url/hostname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/hostname&quot;,
-            &quot;text&quot;: &quot;fraillove.github.io&quot;
+            &quot;text&quot;: &quot;127.0.0.1&quot;
         },
         &quot;$:/info/url/protocol&quot;: {
             &quot;title&quot;: &quot;$:/info/url/protocol&quot;,
-            &quot;text&quot;: &quot;https:&quot;
+            &quot;text&quot;: &quot;http:&quot;
         },
         &quot;$:/info/url/port&quot;: {
             &quot;title&quot;: &quot;$:/info/url/port&quot;,
-            &quot;text&quot;: &quot;&quot;
+            &quot;text&quot;: &quot;8000&quot;
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/wiki/&quot;
+            &quot;text&quot;: &quot;/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -13919,7 +13924,7 @@ $title$$(currentTiddler)$
         },
         &quot;$:/info/url/origin&quot;: {
             &quot;title&quot;: &quot;$:/info/url/origin&quot;,
-            &quot;text&quot;: &quot;https://fraillove.github.io&quot;
+            &quot;text&quot;: &quot;http://127.0.0.1:8000&quot;
         }
     }
 }</pre>
@@ -14924,8 +14929,7 @@ Welcome to my wiki.
 <pre>Github: https://github.com/fraillove</pre>
 </div>
 <div created="20181217145008960" modified="20181217145208299" tags="Go" title="Golang 交叉编译" type="text/x-markdown">
-<pre>
-** 有效的`$GOOS`和`$GOARCH`组合如下：
+<pre>** 有效的`$GOOS`和`$GOARCH`组合如下：
 **
 
     $GOOS		$GOARCH
@@ -15331,8 +15335,7 @@ gzip_disable &quot;MSIE [1-6]\.&quot;;
 ```</pre>
 </div>
 <div created="20181217145316725" modified="20181217145643374" tags="IDE Python PyCharm" title="PyCharm 快捷键" type="text/plain">
-<pre>
-Editing（编辑）
+<pre>Editing（编辑）
 ⌃Space 基本的代码补全（补全任何类、方法、变量）
 ⌃⇧Space 智能代码补全（过滤器方法列表和变量的预期类型）
 ⌘⇧↩ 自动结束代码，行末自动添加分号
