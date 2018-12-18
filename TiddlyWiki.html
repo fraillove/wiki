@@ -422,6 +422,8 @@ Error message and password prompt
 
 <li>Nginx 开启 gzip</li>
 
+<li>Oracle IN Lists</li>
+
 <li>PyCharm 快捷键</li>
 
 <li>Spring Boot 参数校验</li>
@@ -13817,7 +13819,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="[[修改 TiddlyWiki 的 Favicon]] $:/favicon.ico [[mac 安装 Oracle]] [[Spring Boot 参数校验]] 回调地狱 [[IntelliJ IDEA Keys]] About" title="$:/StoryList">
+<div list="[[Oracle IN Lists]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -15436,6 +15438,76 @@ gzip_vary on;
 # 禁用IE 6 gzip
 gzip_disable &quot;MSIE [1-6]\.&quot;;
 ```</pre>
+</div>
+<div created="20181218161139445" modified="20181218162855437" tags="XML SQL Oracle" title="Oracle IN Lists" type="text/x-markdown">
+<pre>&gt; For example
+
+convert        
+
+1. `A,BB,CCC,DDDD,EEEEE`
+
+
+to
+
+1. `A`
+2. `BB`
+3. `CCC`
+4. `DDDD`
+5. `EEEEE`
+
+
+
+I will not tell that regular expression or instr substr things here.
+
+
+
+Solution 1:
+
+```sql
+select substr(
+    :txt,
+    pos + 1,
+    lead(pos, 1, 4000) over(order by pos) - pos - 1
+) subs
+from (
+    select instr(:txt, ',', 1, level) pos
+    from dual
+    connect by
+    level &lt;= length(:txt) - nvl(length(replace(:txt, ',', '')), 0) + 1
+```
+
+
+
+Solution 2(XML):
+
+```sql
+select subs from xmltable(
+    '/r/c/text()'
+    passing xmltype('&lt;r&gt;&lt;c&gt;'||replace(:txt, ',', '&lt;/c&gt;&lt;c&gt;')||'&lt;/c&gt;&lt;/r&gt;')
+    columns subs varchar2(4000) path '.'
+);
+```
+
+```sql
+with data as 
+    (select '&quot;'||replace(:txt, ',', '&quot;,&quot;')||'&quot;' str 
+       from dual)
+select xmlcast(column_value as varchar2(4000)) subs 
+  from data, xmltable(str);
+```
+
+```sql
+select subs from xmltable(
+      'if (contains($X,&quot;,&quot;)) then ora:tokenize($X,&quot;\,&quot;) else $X'
+    passing :txt as X
+    columns subs varchar2(4000) path '.'
+);
+-- still work when :txt is full 4000 bytes
+```
+
+
+
+</pre>
 </div>
 <div created="20181217145316725" modified="20181217145643374" tags="IDE Python PyCharm" title="PyCharm 快捷键" type="text/plain">
 <pre>Editing（编辑）
