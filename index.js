@@ -3,7 +3,7 @@ const http = require('http');
 const execSync = require('child_process').execSync;
 const path = require('path')
 
-const watchFileName = 'index.html';
+const watchFileName = 'TiddlyWiki.html';
 const watchDir = path.resolve(process.env.HOME, 'Downloads');
 const watchFilepath = path.resolve(watchDir, watchFileName);
 const root = path.dirname(__filename);
