@@ -1,6 +1,8 @@
+[**Click here**](https://fraillove.github.io/wiki/TiddlyWiki.html)
+
 ## *startup for macOS*
 
-**https://fraillove.github.io/wiki/**
+
 
 #### 直接运行
 `yarn start`
