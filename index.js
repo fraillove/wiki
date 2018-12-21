@@ -23,7 +23,7 @@ console.log(`current config \n ${JSON.stringify(config, null, "\t")}\n`)
 
 http.createServer(function(req, res){
     if(req.url !== `/${watchFileName}`){
-      res.writeHead(302, {'Location': `http://127.0.0.1:${serverPort}/${watchFileName}`});
+      res.writeHead(302, {'Location': `http://fraillove.local:${serverPort}/${watchFileName}`});
       res.end();
       return
     }
@@ -34,7 +34,7 @@ http.createServer(function(req, res){
     });
 }).listen(serverPort);
 
-console.log(`wiki start at http://127.0.0.1:${serverPort}/${watchFileName}`)
+console.log(`wiki start at http://fraillove.local:${serverPort}/${watchFileName}`)
 
 
 
