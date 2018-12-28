@@ -420,6 +420,8 @@ Error message and password prompt
 
 <li>Cannot find module</li>
 
+<li>cron 环境变量设置</li>
+
 <li>Golang 交叉编译</li>
 
 <li>IMG_1176.JPG</li>
@@ -13839,7 +13841,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="前端工具站点 About" title="$:/StoryList">
+<div list="[[cron 环境变量设置]] 前端工具站点 About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -15692,6 +15694,25 @@ Welcome to my wiki.
 3. **npm cache clear --force**
 4. **npm prune**
 5. **npm install**
+
+</pre>
+</div>
+<div created="20181228045732270" modified="20181228045956263" tags="Linux Java" title="cron 环境变量设置" type="text/x-markdown">
+<pre>crontab执行shell命令时，它的环境变量和你~/.zshrc或者~/.bashrc中的不一样。
+
+
+
+例如，当你执行一个java程序时，一般要求你有一个JAVA_HOME环境变量。正常情况下，你这个环境变量是写在~/.bashrc或者~/.zshrc中的。所以当你直接执行java命令是正常的。
+
+
+
+但是如果你使用crontab定时执行java命令，crontab是无法直接读取你的JAVA_HOME环境变量的。此时，你就需要人工指定：
+
+
+
+```bash
+* 5 * * * export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64 &amp;&amp; cd ~/program &amp;&amp; java -jar xxx.jar
+```
 
 </pre>
 </div>
