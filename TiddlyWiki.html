@@ -422,6 +422,8 @@ Error message and password prompt
 
 <li>cron 环境变量设置</li>
 
+<li>Excel IRR function in  Oracle PLSQL</li>
+
 <li>Find num of rows in each `Oracle` table</li>
 
 <li>Golang 交叉编译</li>
@@ -13843,7 +13845,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="[[Find num of rows in each `Oracle` table]] [[macOS 快捷键]] About" title="$:/StoryList">
+<div list="[[Excel IRR function in  Oracle PLSQL]] [[Cannot find module]] [[cron 环境变量设置]] [[Find num of rows in each `Oracle` table]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -15714,6 +15716,246 @@ Welcome to my wiki.
 ```bash
 * 5 * * * export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64 &amp;&amp; cd ~/program &amp;&amp; java -jar xxx.jar
 ```
+
+</pre>
+</div>
+<div created="20190101034731055" modified="20190101034833856" tags="SQL Excel Oracle" title="Excel IRR function in  Oracle PLSQL" type="text/x-markdown">
+<pre># Excel IRR function in  Oracle PLSQL
+
+&gt;Newton’s method
+
+```sql
+create table test_tbl
+   (
+    id number,
+    cash_flow number
+    );
+		
+		
+
+ insert into test_tbl (id,cash_flow) values (0,-6000000);
+ insert into test_tbl (id,cash_flow) values (1,50243.25);
+ insert into test_tbl (id,cash_flow) values (2,50243.25);
+ insert into test_tbl (id,cash_flow) values (3,50243.25);
+ insert into test_tbl (id,cash_flow) values (4,50243.25);
+ insert into test_tbl (id,cash_flow) values (5,50243.25);
+ insert into test_tbl (id,cash_flow) values (6,50243.25);
+ insert into test_tbl (id,cash_flow) values (7,50243.25);
+ insert into test_tbl (id,cash_flow) values (8,50243.25);
+ insert into test_tbl (id,cash_flow) values (9,50243.25);
+ insert into test_tbl (id,cash_flow) values (10,50243.25);
+ insert into test_tbl (id,cash_flow) values (11,50243.25);
+ insert into test_tbl (id,cash_flow) values (12,50243.25);
+ insert into test_tbl (id,cash_flow) values (13,50243.25);
+ insert into test_tbl (id,cash_flow) values (14,50243.25);
+ insert into test_tbl (id,cash_flow) values (15,50243.25);
+ insert into test_tbl (id,cash_flow) values (16,50243.25);
+ insert into test_tbl (id,cash_flow) values (17,50243.25);
+ insert into test_tbl (id,cash_flow) values (18,50243.25);
+ insert into test_tbl (id,cash_flow) values (19,50243.25);
+ insert into test_tbl (id,cash_flow) values (20,50243.25);
+ insert into test_tbl (id,cash_flow) values (21,50243.25);
+ insert into test_tbl (id,cash_flow) values (22,50243.25);
+ insert into test_tbl (id,cash_flow) values (23,50243.25);
+ insert into test_tbl (id,cash_flow) values (24,50243.25);
+ insert into test_tbl (id,cash_flow) values (25,50243.25);
+ insert into test_tbl (id,cash_flow) values (26,50243.25);
+ insert into test_tbl (id,cash_flow) values (27,50243.25);
+ insert into test_tbl (id,cash_flow) values (28,50243.25);
+ insert into test_tbl (id,cash_flow) values (29,50243.25);
+ insert into test_tbl (id,cash_flow) values (30,50243.25);
+ insert into test_tbl (id,cash_flow) values (31,50243.25);
+ insert into test_tbl (id,cash_flow) values (32,50243.25);
+ insert into test_tbl (id,cash_flow) values (33,50243.25);
+ insert into test_tbl (id,cash_flow) values (34,50243.25);
+ insert into test_tbl (id,cash_flow) values (35,50243.25);
+ insert into test_tbl (id,cash_flow) values (36,50243.25);
+ insert into test_tbl (id,cash_flow) values (37,50243.25);
+ insert into test_tbl (id,cash_flow) values (38,50243.25);
+ insert into test_tbl (id,cash_flow) values (39,50243.25);
+ insert into test_tbl (id,cash_flow) values (40,50243.25);
+ insert into test_tbl (id,cash_flow) values (41,50243.25);
+ insert into test_tbl (id,cash_flow) values (42,50243.25);
+ insert into test_tbl (id,cash_flow) values (43,50243.25);
+ insert into test_tbl (id,cash_flow) values (44,50243.25);
+ insert into test_tbl (id,cash_flow) values (45,50243.25);
+ insert into test_tbl (id,cash_flow) values (46,50243.25);
+ insert into test_tbl (id,cash_flow) values (47,50243.25);
+ insert into test_tbl (id,cash_flow) values (48,50243.25);
+ insert into test_tbl (id,cash_flow) values (49,50243.25);
+ insert into test_tbl (id,cash_flow) values (50,50243.25);
+ insert into test_tbl (id,cash_flow) values (51,50243.25);
+ insert into test_tbl (id,cash_flow) values (52,50243.25);
+ insert into test_tbl (id,cash_flow) values (53,50243.25);
+ insert into test_tbl (id,cash_flow) values (54,50243.25);
+ insert into test_tbl (id,cash_flow) values (55,50243.25);
+ insert into test_tbl (id,cash_flow) values (56,50243.25);
+ insert into test_tbl (id,cash_flow) values (57,50243.25);
+ insert into test_tbl (id,cash_flow) values (58,50243.25);
+ insert into test_tbl (id,cash_flow) values (59,50243.25);
+ insert into test_tbl (id,cash_flow) values (60,50243.25);
+ insert into test_tbl (id,cash_flow) values (61,50243.25);
+ insert into test_tbl (id,cash_flow) values (62,50243.25);
+ insert into test_tbl (id,cash_flow) values (63,50243.25);
+ insert into test_tbl (id,cash_flow) values (64,50243.25);
+ insert into test_tbl (id,cash_flow) values (65,50243.25);
+ insert into test_tbl (id,cash_flow) values (66,50243.25);
+ insert into test_tbl (id,cash_flow) values (67,50243.25);
+ insert into test_tbl (id,cash_flow) values (68,50243.25);
+ insert into test_tbl (id,cash_flow) values (69,50243.25);
+ insert into test_tbl (id,cash_flow) values (70,50243.25);
+ insert into test_tbl (id,cash_flow) values (71,50243.25);
+ insert into test_tbl (id,cash_flow) values (72,50243.25);
+ insert into test_tbl (id,cash_flow) values (73,50243.25);
+ insert into test_tbl (id,cash_flow) values (74,50243.25);
+ insert into test_tbl (id,cash_flow) values (75,50243.25);
+ insert into test_tbl (id,cash_flow) values (76,50243.25);
+ insert into test_tbl (id,cash_flow) values (77,50243.25);
+ insert into test_tbl (id,cash_flow) values (78,50243.25);
+ insert into test_tbl (id,cash_flow) values (79,50243.25);
+ insert into test_tbl (id,cash_flow) values (80,50243.25);
+ insert into test_tbl (id,cash_flow) values (81,50243.25);
+ insert into test_tbl (id,cash_flow) values (82,50243.25);
+ insert into test_tbl (id,cash_flow) values (83,50243.25);
+ insert into test_tbl (id,cash_flow) values (84,50243.25);
+ insert into test_tbl (id,cash_flow) values (85,50243.25);
+ insert into test_tbl (id,cash_flow) values (86,50243.25);
+ insert into test_tbl (id,cash_flow) values (87,50243.25);
+ insert into test_tbl (id,cash_flow) values (88,50243.25);
+ insert into test_tbl (id,cash_flow) values (89,50243.25);
+ insert into test_tbl (id,cash_flow) values (90,50243.25);
+ insert into test_tbl (id,cash_flow) values (91,50243.25);
+ insert into test_tbl (id,cash_flow) values (92,50243.25);
+ insert into test_tbl (id,cash_flow) values (93,50243.25);
+ insert into test_tbl (id,cash_flow) values (94,50243.25);
+ insert into test_tbl (id,cash_flow) values (95,50243.25);
+ insert into test_tbl (id,cash_flow) values (96,50243.25);
+ insert into test_tbl (id,cash_flow) values (97,50243.25);
+ insert into test_tbl (id,cash_flow) values (98,50243.25);
+ insert into test_tbl (id,cash_flow) values (99,50243.25);
+ insert into test_tbl (id,cash_flow) values (100,50243.25);
+ insert into test_tbl (id,cash_flow) values (101,50243.25);
+ insert into test_tbl (id,cash_flow) values (102,50243.25);
+ insert into test_tbl (id,cash_flow) values (103,50243.25);
+ insert into test_tbl (id,cash_flow) values (104,50243.25);
+ insert into test_tbl (id,cash_flow) values (105,50243.25);
+ insert into test_tbl (id,cash_flow) values (106,50243.25);
+ insert into test_tbl (id,cash_flow) values (107,50243.25);
+ insert into test_tbl (id,cash_flow) values (108,50243.25);
+ insert into test_tbl (id,cash_flow) values (109,50243.25);
+ insert into test_tbl (id,cash_flow) values (110,50243.25);
+ insert into test_tbl (id,cash_flow) values (111,50243.25);
+ insert into test_tbl (id,cash_flow) values (112,50243.25);
+ insert into test_tbl (id,cash_flow) values (113,50243.25);
+ insert into test_tbl (id,cash_flow) values (114,50243.25);
+ insert into test_tbl (id,cash_flow) values (115,50243.25);
+ insert into test_tbl (id,cash_flow) values (116,50243.25);
+ insert into test_tbl (id,cash_flow) values (117,50243.25);
+ insert into test_tbl (id,cash_flow) values (118,50243.25);
+ insert into test_tbl (id,cash_flow) values (119,50243.25);
+ insert into test_tbl (id,cash_flow) values (120,50243.25);
+ insert into test_tbl (id,cash_flow) values (121,50243.25);
+ insert into test_tbl (id,cash_flow) values (122,50243.25);
+ insert into test_tbl (id,cash_flow) values (123,50243.25);
+ insert into test_tbl (id,cash_flow) values (124,50243.25);
+ insert into test_tbl (id,cash_flow) values (125,50243.25);
+ insert into test_tbl (id,cash_flow) values (126,50243.25);
+ insert into test_tbl (id,cash_flow) values (127,50243.25);
+ insert into test_tbl (id,cash_flow) values (128,50243.25);
+ insert into test_tbl (id,cash_flow) values (129,50243.25);
+ insert into test_tbl (id,cash_flow) values (130,50243.25);
+ insert into test_tbl (id,cash_flow) values (131,50243.25);
+ insert into test_tbl (id,cash_flow) values (132,50243.25);
+ insert into test_tbl (id,cash_flow) values (133,50243.25);
+ insert into test_tbl (id,cash_flow) values (134,50243.25);
+ insert into test_tbl (id,cash_flow) values (135,50243.25);
+ insert into test_tbl (id,cash_flow) values (136,50243.25);
+ insert into test_tbl (id,cash_flow) values (137,50243.25);
+ insert into test_tbl (id,cash_flow) values (138,50243.25);
+ insert into test_tbl (id,cash_flow) values (139,50243.25);
+ insert into test_tbl (id,cash_flow) values (140,50243.25);
+ insert into test_tbl (id,cash_flow) values (141,50243.25);
+ insert into test_tbl (id,cash_flow) values (142,50243.25);
+ insert into test_tbl (id,cash_flow) values (143,50243.25);
+ insert into test_tbl (id,cash_flow) values (144,50243.25);
+ insert into test_tbl (id,cash_flow) values (145,50243.25);
+ insert into test_tbl (id,cash_flow) values (146,50243.25);
+ insert into test_tbl (id,cash_flow) values (147,50243.25);
+ insert into test_tbl (id,cash_flow) values (148,50243.25);
+ insert into test_tbl (id,cash_flow) values (149,50243.25);
+ insert into test_tbl (id,cash_flow) values (150,50243.25);
+ insert into test_tbl (id,cash_flow) values (151,50243.25);
+ insert into test_tbl (id,cash_flow) values (152,50243.25);
+ insert into test_tbl (id,cash_flow) values (153,50243.25);
+ insert into test_tbl (id,cash_flow) values (154,50243.25);
+ insert into test_tbl (id,cash_flow) values (155,50243.25);
+ insert into test_tbl (id,cash_flow) values (156,50243.25);
+ insert into test_tbl (id,cash_flow) values (157,50243.25);
+ insert into test_tbl (id,cash_flow) values (158,50243.25);
+ insert into test_tbl (id,cash_flow) values (159,50243.25);
+ insert into test_tbl (id,cash_flow) values (160,50243.25);
+ insert into test_tbl (id,cash_flow) values (161,50243.25);
+ insert into test_tbl (id,cash_flow) values (162,50243.25);
+ insert into test_tbl (id,cash_flow) values (163,50243.25);
+ insert into test_tbl (id,cash_flow) values (164,50243.25);
+ insert into test_tbl (id,cash_flow) values (165,50243.25);
+ insert into test_tbl (id,cash_flow) values (166,50243.25);
+ insert into test_tbl (id,cash_flow) values (167,50243.25);
+ insert into test_tbl (id,cash_flow) values (168,50243.25);
+ insert into test_tbl (id,cash_flow) values (169,50243.25);
+ insert into test_tbl (id,cash_flow) values (170,50243.25);
+ insert into test_tbl (id,cash_flow) values (171,50243.25);
+ insert into test_tbl (id,cash_flow) values (172,50243.25);
+ insert into test_tbl (id,cash_flow) values (173,50243.25);
+ insert into test_tbl (id,cash_flow) values (174,50243.25);
+ insert into test_tbl (id,cash_flow) values (175,50243.25);
+ insert into test_tbl (id,cash_flow) values (176,50243.25);
+ insert into test_tbl (id,cash_flow) values (177,50243.25);
+ insert into test_tbl (id,cash_flow) values (178,50243.25);
+ insert into test_tbl (id,cash_flow) values (179,50243.25);
+ insert into test_tbl (id,cash_flow) values (180,54802.38);
+ 
+ 
+ 
+  create or replace
+   function irr(rc sys_refcursor) return number is
+     type nlist is table of number index by pls_integer;
+     l_values nlist;
+ 
+     l_threshold number := 0.005;
+     l_guess number := l_threshold + 1;
+     l_next_guess number := 2;
+     l_irr number := 1;
+   begin
+    fetch rc bulk collect into l_values;
+    close rc;
+
+    while abs(l_guess) &gt; l_threshold
+    loop
+      l_guess := 0;
+      l_next_guess := 0;
+      for i in 1 .. l_values.count
+      loop
+        l_guess := l_guess + l_values(i)/power(1+l_irr/100, i-1);
+        l_next_guess := l_next_guess + -i*l_values(i)/power(1+l_irr/100, i-1);
+       end loop;
+       l_irr := l_irr - l_guess/l_next_guess;
+ 
+       --dbms_output.put_line('l_irr='||l_irr);
+       --dbms_output.put_line('l_guess='||l_guess);
+       --dbms_output.put_line('l_next_guess='||l_next_guess);
+     end loop;
+     return l_irr;
+   end;
+   
+
+
+select 
+	irr(cursor(select cash_flow from test_tbl order by id asc )) irr
+from dual;
+```
+
+
 
 </pre>
 </div>
