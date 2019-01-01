@@ -422,6 +422,8 @@ Error message and password prompt
 
 <li>cron 环境变量设置</li>
 
+<li>Find num of rows in each `Oracle` table</li>
+
 <li>Golang 交叉编译</li>
 
 <li>IMG_1176.JPG</li>
@@ -13841,7 +13843,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="[[cron 环境变量设置]] 前端工具站点 About" title="$:/StoryList">
+<div list="[[Find num of rows in each `Oracle` table]] [[macOS 快捷键]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -15033,8 +15035,7 @@ history | awk '{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&quot; &q
 ```</pre>
 </div>
 <div created="20181228045558255" modified="20181228045658300" tags="tool link WebFrontEnd" title="前端工具站点" type="text/x-markdown">
-<pre>
-## 📙 Documents
+<pre>## 📙 Documents
 
 - [MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web) - 权威的 Web 技术文档库，各种网络标准、最佳实践、开发者文档
 - [DevDocs API Documentation](https://devdocs.io/) - 各种 API 文档聚合，可以离线、更新迅速，可以看做网页版 Dash
@@ -15712,6 +15713,75 @@ Welcome to my wiki.
 
 ```bash
 * 5 * * * export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64 &amp;&amp; cd ~/program &amp;&amp; java -jar xxx.jar
+```
+
+</pre>
+</div>
+<div created="20190101033239791" modified="20190101033330630" tags="SQL Oracle" title="Find num of rows in each `Oracle` table" type="text/x-markdown">
+<pre>### Find num of rows in each `Oracle` table
+
+
+
+1.
+
+```sql
+SELECT
+	table_name,
+	to_number(
+	extractvalue ( xmltype ( dbms_xmlgen.getxml ( 'select count(*) c from ' || table_name )), '/ROWSET/ROW/C' )) count 
+FROM
+	user_tables 
+WHERE
+	iot_type != 'IOT_OVERFLOW' 
+	OR iot_type IS NULL;
+```
+
+
+
+2.
+
+```sql
+SELECT
+	table_name,
+	xmlquery ( xq returning content ) cnt 
+FROM
+	(
+	SELECT
+		table_name,
+		'count(ora:view(&quot;' || table_name || '&quot;))' xq 
+	FROM
+	USER_TABLES);
+```
+
+
+
+
+
+3.
+
+```sql
+CREATE or REPLACE FUNCTION GET_ROWS ( p_tname in varchar2,p_own in varchar2 ) return number
+AUTHID CURRENT_USER
+as
+    l_columnValue    number default NULL;
+begin
+    execute immediate
+       'select count(*)
+          from ' ||p_own||'.'||p_tname
+          INTO l_columnValue;
+
+    return l_columnValue;
+end;
+
+
+SELECT USER
+	,
+	table_name,
+	get_rows ( table_name, USER ) cnt 
+FROM
+	all_tables 
+WHERE
+	OWNER = USER;
 ```
 
 </pre>
