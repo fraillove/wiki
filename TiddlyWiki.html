@@ -450,6 +450,8 @@ Error message and password prompt
 
 <li>Oracle IN Lists</li>
 
+<li>Oracle merge into 更新 on 引用行</li>
+
 <li>PyCharm 快捷键</li>
 
 <li>Spring Boot 参数校验</li>
@@ -13847,7 +13849,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="[[SSH Examples, Tips &amp; Tunnels]] About" title="$:/StoryList">
+<div list="[[Oracle merge into 更新 on 引用行]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -16560,6 +16562,89 @@ select subs from xmltable(
 ```
 
 
+
+</pre>
+</div>
+<div created="20190104025922167" modified="20190104030011321" tags="SQL 数据库 Oracle" title="Oracle merge into 更新 on 引用行" type="text/x-markdown">
+<pre>```sql
+CREATE TABLE person (
+  id NUMBER(18) NOT NULL PRIMARY KEY,
+  user_name VARCHAR2(50) NOT NULL UNIQUE,
+  score NUMBER(18)
+);
+
+INSERT INTO person (id, user_name, score)
+VALUES (1, 'fraillove', 50);
+```
+
+在 MySQL 中
+可以执行下列 SQL
+
+```sql
+INSERT INTO person (id, user_name, score)
+VALUES (1, 'foo', 100)
+ON DUPLICATE KEY UPDATE
+  SET user_name = 'foo', score = 100;
+```
+
+如果遇到了重复 就更新
+
+```sql
+MERGE INTO person t
+USING (SELECT 1 id, 'fraillove' user_name, 100 score FROM dual) s
+ON (t.id = s.id OR t.user_name = s.user_name)
+WHEN MATCHED THEN
+    UPDATE SET t.user_name = s.user_name, t.score = 100
+WHEN NOT MATCHED THEN
+    INSERT (id, user_name, score) VALUES (s.id, s.user_name, s.score)
+--ORA38104  无法更新 on 中引用的列
+```
+
+因为 ID 和 user_name 都是 唯一的 我们得想办法绕过这个限制
+
+&gt;以下在 oracle 11.2 版本下测试有效
+
+```sql
+--行值表达式
+MERGE INTO person t
+USING (SELECT 1 id, 'fraillove' user_name, 100 score FROM dual) s
+ON (t.id = s.id OR
+(t.user_name, 'dummy') = ((s.user_name, 'dummy')))
+WHEN MATCHED THEN
+    UPDATE SET t.user_name = s.user_name, t.score = 100
+WHEN NOT MATCHED THEN
+    INSERT (id, user_name, score) VALUES (s.id, s.user_name, s.score)
+
+--相关子查询
+MERGE INTO person t
+USING (SELECT 1 id, 'fraillove' user_name, 100 score FROM dual) s
+ON (t.id = s.id OR
+ (SELECT t.user_name FROM dual) = s.user_name)
+WHEN MATCHED THEN
+    UPDATE SET t.user_name = s.user_name, t.score = 100
+WHEN NOT MATCHED THEN
+    INSERT (id, user_name, score) VALUES (s.id, s.user_name, s.score);
+
+--更新简单视图
+MERGE INTO (SELECT id, user_name, nvl(user_name, NULL) n, score FROM person) t
+USING (SELECT 1 id, 'fraillove' user_name, 100 score FROM dual) s
+ON (t.id = s.id OR t.n = s.user_name)
+WHEN MATCHED THEN
+    UPDATE SET t.user_name = s.user_name, t.score = 100
+WHEN NOT MATCHED THEN
+    INSERT (id, user_name, score) VALUES (s.id, s.user_name, s.score);
+
+--match 的 where 条件
+MERGE INTO person t
+USING (SELECT 1 id, 'fraillove' user_name, 100 score FROM dual) s
+ON (t.id = s.id)
+WHEN MATCHED THEN
+    UPDATE
+       SET t.user_name = s.user_name, t.score = 100
+     WHERE t.user_name = s.user_name
+WHEN NOT MATCHED THEN
+    INSERT (id, user_name, score) VALUES (s.id, s.user_name, s.score);
+```
 
 </pre>
 </div>
