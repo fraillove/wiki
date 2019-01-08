@@ -390,6 +390,8 @@ Error message and password prompt
 
 <li>历史输入命令频率</li>
 
+<li>朴素贝叶斯in sql.md</li>
+
 <li>前端工具站点</li>
 
 <li>删除大量文件的文件夹</li>
@@ -8795,7 +8797,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>下列条目已被导入：
 
-# [[什么时候不应该使用微服务.md]]</pre>
+# [[朴素贝叶斯in sql.md]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -13843,13 +13845,13 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20171120075730689" modified="20181218122802092" title="$:/state/tab/moresidebar-401116514">
 <pre>$:/core/ui/MoreSideBar/All</pre>
 </div>
-<div created="20171120075104116" modified="20181222155120125" title="$:/state/tab/sidebar--1835078512">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20171120075104116" modified="20190108083948899" title="$:/state/tab/sidebar--1835078512">
+<pre>$:/core/ui/SideBar/Tools</pre>
 </div>
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="在线工具合集 前端工具站点 About" title="$:/StoryList">
+<div list="$:/Import [[朴素贝叶斯in sql.md]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -15039,6 +15041,109 @@ You can find the source for this [on github](http://github.com/maxogden/callback
 <pre>```bash
 history | awk '{CMD[$2]++;count++;} END { for (a in CMD )print CMD[ a ]&quot; &quot; CMD[ a ]/count*100 &quot;% &quot; a }' | grep -v &quot;./&quot; | column -c3 -s &quot; &quot; -t |sort -nr | nl |awk '{if($2&gt;=5) print$0}'
 ```</pre>
+</div>
+<div created="20190108084036299" modified="20190108084054285" tags="SQL Oracle" title="朴素贝叶斯in sql.md" type="text/x-markdown">
+<pre>基于以往的天气情况和出去打球的表现有以下表
+
+```sql
+create table BAYES
+(
+  outlook     VARCHAR2(10) NOT NULL,
+  temperature VARCHAR2(10)  NOT NULL,
+  humidity    VARCHAR2(10)  NOT NULL,
+  wind        VARCHAR2(10)  NOT NULL,
+  play_ball   VARCHAR2(10)  NOT NULL
+);
+
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('晴', '炎热', '潮湿', '弱', 'No');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('晴', '炎热', '潮湿', '强', 'No');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('阴', '炎热', '潮湿', '弱', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('雨', '温和', '潮湿', '弱', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('雨', '凉爽', '干燥', '弱', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('雨', '凉爽', '干燥', '强', 'No');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('阴', '凉爽', '干燥', '强', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('晴', '温和', '潮湿', '弱', 'No');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('晴', '凉爽', '干燥', '弱', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('雨', '温和', '干燥', '弱', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('晴', '温和', '干燥', '强', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('阴', '温和', '潮湿', '强', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('阴', '炎热', '干燥', '弱', 'Yes');
+insert into bayes (OUTLOOK, TEMPERATURE, HUMIDITY, WIND, PLAY_BALL)
+values ('雨', '温和', '潮湿', '强', 'No');
+```
+
+
+
+现在要知道  `雨`,`凉爽`, `潮湿`, `强` 这种天气情况组合下 出去打球的概率
+
+
+
+```sql
+WITH input
+      (outlook,
+      temperature,
+      humidity,
+      wind) 
+AS
+ (SELECT '雨', '凉爽', '潮湿', '强' FROM dual),
+cnt AS
+ (SELECT COUNT(*) tot,
+         COUNT(decode(play_ball, 'No', '', play_ball)) ycnt,
+         COUNT(decode(play_ball, 'Yes', '', play_ball)) ncnt,
+         SUM(CASE WHEN play_ball = 'Yes' AND bayes.outlook = input.outlook
+                 THEN 1
+                 ELSE 0 END) yop,
+         SUM(CASE WHEN play_ball = 'Yes' AND bayes.temperature = input.temperature 
+                 THEN 1 
+                 ELSE 0 END) ytp,
+         SUM(CASE WHEN play_ball = 'Yes' AND bayes.humidity = input.humidity 
+                 THEN 1 
+                 ELSE 0  END) yhp,
+         SUM(CASE WHEN play_ball = 'Yes' AND bayes.wind = input.wind 
+                 THEN 1
+                 ELSE 0  END) ywp,
+         SUM(CASE WHEN play_ball = 'No' AND bayes.outlook = input.outlook 
+                 THEN 1
+                 ELSE 0  END) nop,
+         SUM(CASE WHEN play_ball = 'No' AND bayes.temperature = input.temperature 
+                 THEN 1
+                 ELSE 0  END) ntp,
+         SUM(CASE WHEN play_ball = 'No' AND bayes.humidity = input.humidity 
+                 THEN 1 
+                 ELSE 0 END) nhp,
+         SUM(CASE WHEN play_ball = 'No' AND bayes.wind = input.wind 
+                 THEN 1
+                 ELSE 0 END) nwp
+    FROM bayes, input),
+yn AS
+ (SELECT (yop / ycnt) * (ytp / ycnt) * (yhp / ycnt) * (ywp / ycnt) *
+         (ycnt / tot) y,
+         (nop / ncnt) * (ntp / ncnt) * (nhp / ncnt) * (nwp / ncnt) *
+         (ncnt / tot) n
+    FROM cnt),
+RESULT AS
+ (SELECT round(y / (y + n), 6) yval, round(n / (y + n), 6) nval FROM yn)
+SELECT * FROM RESULT;
+
+--      YVAL       NVAL
+---------- ----------
+--     0.366569   0.633431
+```
+
+</pre>
 </div>
 <div created="20181228045558255" modified="20181228045658300" tags="tool link WebFrontEnd" title="前端工具站点" type="text/x-markdown">
 <pre>## 📙 Documents
