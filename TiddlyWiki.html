@@ -426,6 +426,8 @@ Error message and password prompt
 
 <li>Draft of '官方社区文档合集'</li>
 
+<li>echo $?</li>
+
 <li>Excel IRR function in  Oracle PLSQL</li>
 
 <li>Find num of rows in each `Oracle` table</li>
@@ -13861,7 +13863,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="About" title="$:/StoryList">
+<div list="[[echo $?]] About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -15866,6 +15868,23 @@ Welcome to my wiki.
 -   ### [Linux 命令](https://wangchujiang.com/linux-command/hot.html)
 
 -   ### [GraphQL](https://graphql.org/learn/)
+</pre>
+</div>
+<div created="20190116152749778" modified="20190116153145389" tags="Linux bash" title="echo $?" type="text/x-markdown">
+<pre>命令失败重新执行,用 bash 循环,条件是退出值是否为 0
+
+
+`echo $?`
+上一条执行命令的 exit status 
+
+For example the command true always returns a status of 0 and false always returns a status of 1:
+
+```bash
+true
+echo $? # echoes 0
+false
+echo $? # echoes 1
+```
 </pre>
 </div>
 <div created="20190101034731055" modified="20190101035252626" tags="SQL Excel Oracle" title="Excel IRR function in  Oracle PLSQL" type="text/x-markdown">
