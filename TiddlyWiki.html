@@ -460,7 +460,7 @@ Error message and password prompt
 
 <li>macOS 快捷键</li>
 
-<li>maven查看 jar 包是哪个导入的</li>
+<li>maven</li>
 
 <li>Nginx 开启 gzip</li>
 
@@ -13881,7 +13881,7 @@ exports[&quot;text/x-markdown&quot;] = MarkdownParser;
 <div created="20181217055800985" modified="20181217055839368" title="$:/state/tag-manager/抓包">
 <pre>open</pre>
 </div>
-<div list="如何写复杂业务代码 About" title="$:/StoryList">
+<div list="maven About" title="$:/StoryList">
 <pre></pre>
 </div>
 <div caption="{{$:/language/TagManager/Caption}}" color="#bbb" created="20181217061133818" icon="$:/core/images/tag-button" modified="20181217061205611" tags="SSH" title="$:/TagManager">
@@ -17521,8 +17521,12 @@ docker run -p 5432:5432 -e POSTGRES_DB=baur postgres:latest
 
 </pre>
 </div>
-<div created="20190807032646184" modified="20190807032707880" tags="Java" title="maven查看 jar 包是哪个导入的" type="text/x-markdown">
-<pre>mvn dependency:tree -Dverbose -Dincludes=javax.persistence:persistence-api
+<div created="20190807032646184" modified="20190823055914238" tags="Java" title="maven" type="text/x-markdown">
+<pre>&gt;maven查看 jar 包是哪个导入的
+mvn dependency:tree -Dverbose -Dincludes=javax.persistence:persistence-api
+
+&gt;maven 导入jar到本地仓库
+mvn install:install-file -Dfile=xxx.jar -DgroupId=xxx -DartifactId=xxx -Dversion=xxx -Dpackaging=jar
 </pre>
 </div>
 <div created="20180227085448464" modified="20181217141419547" tags="gzip Nginx" title="Nginx 开启 gzip" type="text/x-markdown">
