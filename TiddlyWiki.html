@@ -17521,11 +17521,13 @@ docker run -p 5432:5432 -e POSTGRES_DB=baur postgres:latest
 
 </pre>
 </div>
-<div created="20190807032646184" modified="20190823055914238" tags="Java" title="maven" type="text/x-markdown">
+<div created="20190807032646184" modified="20190823055927951" tags="Java" title="maven" type="text/x-markdown">
 <pre>&gt;maven查看 jar 包是哪个导入的
+
 mvn dependency:tree -Dverbose -Dincludes=javax.persistence:persistence-api
 
 &gt;maven 导入jar到本地仓库
+
 mvn install:install-file -Dfile=xxx.jar -DgroupId=xxx -DartifactId=xxx -Dversion=xxx -Dpackaging=jar
 </pre>
 </div>
